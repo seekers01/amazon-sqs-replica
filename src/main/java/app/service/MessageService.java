@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class MessageService {
 
     public List<String> sendMessage(SendMessagePOJO request) {
         try {
-            if (request.getMessage() == null || request.getMessage().trim() == "") {
+            if (StringUtils.isEmpty(request.getMessage())) {
                 throw new IllegalArgumentException("No message to publish..");
             } else if (request.getQueueList() == null || request.getQueueList().size() < 1) {
                 throw new IllegalArgumentException("Invalid queue list to send message to ...");
