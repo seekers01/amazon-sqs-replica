@@ -39,13 +39,12 @@ public class QueueService {
                 logger.error("Invalid queue creation request.");
                 throw new IllegalArgumentException("Invalid queue creation request.");
             }
-            queueDao.createNewQueue(request);
+            return queueDao.createNewQueue(request);
         } catch (Exception ex) {
             logger.error("Failed to create new queue.");
             logger.error(ex.getMessage());
             throw new RuntimeException("Failed to create new queue.");
         }
-        return null;
     }
 
     public Queue updateQueue(QueueUpdatePOJO request) {
@@ -54,9 +53,8 @@ public class QueueService {
             if (current == null) {
                 throw new IllegalArgumentException("No such queue exists");
             } else {
-                queueDao.updateQueue(request);
+                return queueDao.updateQueue(request);
             }
-            return current;
         } catch (Exception ex) {
             logger.error("Failed to update queue.");
             logger.error(ex.getMessage());
@@ -64,14 +62,13 @@ public class QueueService {
         }
     }
 
-    public Queue subscribe(QueueSubscribePOJO request) {
+    public void subscribe(QueueSubscribePOJO request) {
         Queue current = queueDao.getQueueByUID(request.getUID());
         if (current == null) {
             throw new IllegalArgumentException("No such queue exists.");
         } else {
             queueDao.subscribeAppToQueue(request);
         }
-        return current;
     }
 
 }

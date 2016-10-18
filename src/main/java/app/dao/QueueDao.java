@@ -20,7 +20,7 @@ import java.util.Map;
 public class QueueDao {
 
     private static final Logger             logger    = LoggerFactory.getLogger(QueueDao.class);
-    private static       Map<String, Queue> queuePool = new HashMap<>();
+    private static final Map<String, Queue> queuePool = new HashMap<>();
 
     public List<Queue> getAllQueues() {
         List<Queue> queueList = new ArrayList<>(0);
@@ -36,16 +36,17 @@ public class QueueDao {
         return null;
     }
 
-    public void createNewQueue(Queue request) {
+    public Queue createNewQueue(Queue request) {
         Queue newQueue = new Queue(request.getName());
         newQueue.setApps(request.getApps());
         queuePool.put(request.getUID(), request);
+        return newQueue;
     }
 
     public Queue updateQueue(QueueUpdatePOJO request) {
         Queue current = queuePool.get(request.getUID());
         current.setName(request.getName());
-        return null;
+        return current;
     }
 
     public void subscribeAppToQueue(QueueSubscribePOJO request) {

@@ -17,7 +17,7 @@ import java.util.Map;
 public class ApplicationDao {
 
     private static final Logger                    logger          = LoggerFactory.getLogger(ApplicationDao.class);
-    private static       Map<Integer, Application> applicationPool = new HashMap<>();
+    private static final Map<Integer, Application> applicationPool = new HashMap<>();
 
     static {
         applicationPool.put(1, new Application(1, "app1"));

@@ -17,7 +17,7 @@ import java.util.Map;
 public class UserDao {
 
     private static final Logger            logger   = LoggerFactory.getLogger(UserDao.class);
-    private static       Map<String, User> userPool = new HashMap<>();
+    private static final Map<String, User> userPool = new HashMap<>();
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>(0);

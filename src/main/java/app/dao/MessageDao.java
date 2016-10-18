@@ -17,7 +17,7 @@ import java.util.Map;
 public class MessageDao {
 
     private static final Logger                logger      = LoggerFactory.getLogger(MessageDao.class);
-    private static       Map<Integer, Message> messagePool = new HashMap<>();
+    private static final Map<Integer, Message> messagePool = new HashMap<>();
 
     public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>(0);
@@ -29,6 +29,7 @@ public class MessageDao {
     public Message createNewMessage(String text) {
         Message message = new Message(text);
         logger.info("Message received. Message: {}", message);
+        messagePool.put(message.getId(), message);
         return message;
     }
 

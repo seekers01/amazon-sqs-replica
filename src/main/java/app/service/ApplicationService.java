@@ -21,6 +21,7 @@ public class ApplicationService {
     private ApplicationDao applicationDao;
 
     public List<Application> getAllApps() {
+        logger.debug("Listing all applications.");
         return applicationDao.getAllApplications();
     }
 
